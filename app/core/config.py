@@ -6,6 +6,7 @@ load_dotenv()
 
 class Settings:
     DATABASE_URL: str = os.getenv("DATABASE_URL")
+    ALEMBIC_DATABASE_URL: str = os.getenv("ALEMBIC_DATABASE_URL")
 
 
 settings = Settings()
