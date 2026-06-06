@@ -6,4 +6,10 @@ Create `.env` file:
 DATABASE_URL=postgresql+asyncpg://postgres:password@localhost:5432/books_db
 
 ALEMBIC_DATABASE_URL=postgresql://postgres:password@localhost:5432/books_db
+
+SECRET_KEY=your-secret-key
+ALGORITHM=HS256
+
+ACCESS_TOKEN_EXPIRE_MINUTES=15
+REFRESH_TOKEN_EXPIRE_DAYS=30
 ```
