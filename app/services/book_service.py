@@ -7,7 +7,7 @@ from app.models.book_model import Book
 from app.repositories.author_repository import AuthorRepository
 from app.repositories.book_repository import BookRepository
 
-from app.schemas.book_schema import BookCreate, BookUpdate
+from app.schemas.book_schema import BookCreate, BookUpdate, BookFilters, BookListResponse, BookResponse
 
 class BookService:
 
@@ -88,3 +88,26 @@ class BookService:
         await self.book_repository.db.refresh(book)
 
         return book
+    
+
+    async def list_books(self, filters: BookFilters) -> BookListResponse:
+        books, total = await (self.book_repository.list_books(filters))
+
+        total_pages = (total + filters.page_size - 1) // filters.page_size
+
+        return BookListResponse(
+            books=[
+                BookResponse(
+                    id=book.id,
+                    title=book.title,
+                    author=book.author.name,
+                    genre=book.genre,
+                    year=book.year,
+                )
+                for book in books
+            ],
+            total=total,
+            page=filters.page,
+            page_size=filters.page_size,
+            total_pages=total_pages,
+        )

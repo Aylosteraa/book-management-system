@@ -63,3 +63,23 @@ class BookListResponse(BaseModel):
     page: int
     page_size: int
     total_pages: int
+
+
+class BookFilters(BaseModel):
+    title: str | None = None
+    author: str | None = None
+    genre: GenreEnum | None = None
+
+    year_from: int | None = None
+    year_to: int | None = None
+
+    page: int = Field(default=1, ge=1)
+
+    page_size: int = Field(
+        default=20,
+        ge=1,
+        le=100
+    )
+
+    sort_by: str = "title"
+    sort_order: str = "asc"

@@ -1,10 +1,11 @@
 from uuid import UUID
 
-from sqlalchemy import select
+from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
 from app.models.book_model import Book
+from app.models.author_model import Author
 
 
 class BookRepository:
@@ -30,3 +31,51 @@ class BookRepository:
     async def delete(self, book: Book) -> None:
 
         await self.db.delete(book)
+
+    async def list_books(self, filters):
+        stmt = (select(Book).join(Author).options(selectinload(Book.author)))
+
+        count_stmt = (select(func.count()).select_from(Book).join(Author))
+
+        if filters.title:
+            stmt = stmt.where(Book.title.ilike(f"%{filters.title}%"))
+            count_stmt = count_stmt.where(Book.title.ilike(f"%{filters.title}%"))
+
+        if filters.author:
+            stmt = stmt.where(Author.name.ilike(f"%{filters.author}%"))
+            count_stmt = count_stmt.where(Author.name.ilike(f"%{filters.author}%"))
+
+        if filters.genre:
+            stmt = stmt.where(Book.genre == filters.genre)
+            count_stmt = count_stmt.where(Book.genre == filters.genre)
+
+        if filters.year_from:
+            stmt = stmt.where(Book.year >= filters.year_from)
+            count_stmt = count_stmt.where(Book.year >= filters.year_from)
+
+        if filters.year_to:
+            stmt = stmt.where(Book.year <= filters.year_to)
+            count_stmt = count_stmt.where(Book.year <= filters.year_to)
+
+        sort_columns = {
+            "title": Book.title,
+            "year": Book.year,
+            "created_at": Book.created_at,
+        }
+
+        sort_column = sort_columns.get(filters.sort_by,Book.title)
+
+        if filters.sort_order == "desc":
+            stmt = stmt.order_by(sort_column.desc())
+
+        else:
+            stmt = stmt.order_by(sort_column.asc())
+
+        offset = (filters.page - 1) * filters.page_size
+        stmt = stmt.offset(offset).limit(filters.page_size)
+        result = await self.db.execute(stmt)
+
+        books = result.scalars().all()
+        total = (await self.db.execute(count_stmt)).scalar()
+
+        return books, total

@@ -12,7 +12,7 @@ from app.models.user_model import User
 from app.repositories.author_repository import AuthorRepository
 from app.repositories.book_repository import BookRepository
 
-from app.schemas.book_schema import BookCreate, BookResponse, BookUpdate
+from app.schemas.book_schema import BookCreate, BookResponse, BookUpdate, BookListResponse, BookFilters
 
 from app.services.book_service import BookService
 
@@ -87,3 +87,8 @@ async def delete_book(book_id: UUID, db: AsyncSession = Depends(get_db), current
     if not deleted:
         raise HTTPException(status_code=404, detail="Book not found")
     
+
+@router.get("/", response_model=BookListResponse)
+async def list_books(filters: BookFilters = Depends(), db: AsyncSession = Depends(get_db),):
+    service = get_book_service(db)
+    return await service.list_books(filters)
