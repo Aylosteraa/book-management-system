@@ -79,3 +79,9 @@ class BookRepository:
         total = (await self.db.execute(count_stmt)).scalar()
 
         return books, total
+    
+    async def get_all(self):
+        stmt = (select(Book).options(selectinload(Book.author)).order_by(Book.title))
+        result = await self.db.execute(stmt)
+        
+        return result.scalars().all()

@@ -1,6 +1,7 @@
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.responses import StreamingResponse
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -15,6 +16,7 @@ from app.repositories.book_repository import BookRepository
 from app.schemas.book_schema import BookCreate, BookResponse, BookUpdate, BookListResponse, BookFilters
 
 from app.services.book_service import BookService
+from app.services.export_import_service import ExportImportService
 
 router = APIRouter(
     prefix="/books",
@@ -30,6 +32,13 @@ def get_book_service(db: AsyncSession) -> BookService:
     )
 
 
+def get_export_import_service(db: AsyncSession) -> ExportImportService:
+
+    return ExportImportService(
+        book_repository=BookRepository(db),
+        author_repository=AuthorRepository(db),
+    )
+
 @router.post("/", response_model=BookResponse, status_code=status.HTTP_201_CREATED)
 async def create_book(payload: BookCreate, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
 
@@ -43,6 +52,28 @@ async def create_book(payload: BookCreate, db: AsyncSession = Depends(get_db), c
         genre=book.genre,
         year=book.year,
     )
+
+
+@router.get("/", response_model=BookListResponse)
+async def list_books(filters: BookFilters = Depends(), db: AsyncSession = Depends(get_db),):
+    service = get_book_service(db)
+    return await service.list_books(filters)
+
+
+@router.get("/export")
+async def export_books(db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+    service = get_export_import_service(db)
+    csv_content = await service.export_books()
+
+    return StreamingResponse(
+        iter([csv_content]),
+        media_type="text/csv",
+        headers={
+            "Content-Disposition":
+            "attachment; filename=books.csv"
+        },
+    )
+
 
 @router.get("/{book_id}", response_model=BookResponse)
 async def get_book( book_id: UUID, db: AsyncSession = Depends(get_db),):
@@ -88,7 +119,3 @@ async def delete_book(book_id: UUID, db: AsyncSession = Depends(get_db), current
         raise HTTPException(status_code=404, detail="Book not found")
     
 
-@router.get("/", response_model=BookListResponse)
-async def list_books(filters: BookFilters = Depends(), db: AsyncSession = Depends(get_db),):
-    service = get_book_service(db)
-    return await service.list_books(filters)

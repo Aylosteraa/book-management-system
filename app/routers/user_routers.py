@@ -18,11 +18,17 @@ router = APIRouter(
     tags=["User"]
 )
 
+def get_auth_service(db: AsyncSession) -> AuthService:
+
+    return AuthService(
+        user_repository=UserRepository(db)
+    )
+
+
 @router.post("/register", response_model=UserResponse)
 async def register(payload: UserRegister, db: AsyncSession = Depends(get_db)):
 
-    repository = UserRepository(db)
-    service = AuthService(repository)
+    service = get_auth_service(db)
 
     try:
         user = await service.register(payload.email, payload.password)
@@ -36,8 +42,7 @@ async def register(payload: UserRegister, db: AsyncSession = Depends(get_db)):
 @router.post("/login", response_model=TokenResponse)
 async def login(payload: UserLogin, db: AsyncSession = Depends(get_db)):
 
-    repository = UserRepository(db)
-    service = AuthService(repository)
+    service = get_auth_service(db)
     tokens = await service.login(payload.email, payload.password)
 
     if not tokens:
@@ -49,8 +54,7 @@ async def login(payload: UserLogin, db: AsyncSession = Depends(get_db)):
 @router.post("/refresh", response_model=TokenResponse)
 async def refresh_token(payload: RefreshTokenRequest, db: AsyncSession = Depends(get_db)):
 
-    repository = UserRepository(db)
-    service = AuthService(repository)
+    service = get_auth_service(db)
     tokens = await service.refresh(payload.refresh_token)
 
     if not tokens:
@@ -62,8 +66,7 @@ async def refresh_token(payload: RefreshTokenRequest, db: AsyncSession = Depends
 @router.post("/authorize", response_model=TokenResponse)
 async def authorize_login(form_data: OAuth2PasswordRequestForm = Depends(), db: AsyncSession = Depends(get_db)):
 
-    repository = UserRepository(db)
-    service = AuthService(repository)
+    service = get_auth_service(db)
     tokens = await service.login(email=form_data.username, password=form_data.password)
 
     if not tokens:
