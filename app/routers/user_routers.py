@@ -56,3 +56,5 @@ async def refresh_token(payload: RefreshTokenRequest, db: AsyncSession = Depends
         raise HTTPException(status_code=401, detail="Invalid refresh token")
 
     return tokens
+
+

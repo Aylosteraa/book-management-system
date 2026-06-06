@@ -1,3 +1,5 @@
+from fastapi.security import OAuth2PasswordBearer
+
 from datetime import datetime, timedelta, UTC
 
 from jose import JWTError, jwt
@@ -9,6 +11,8 @@ pwd_context = CryptContext(
     schemes=["bcrypt"],
     deprecated="auto"
 )
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/user/login")
 
 
 def hash_password(password: str) -> str:
