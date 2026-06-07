@@ -3,9 +3,13 @@
 Create `.env` file:
 
 ```
-DATABASE_URL=postgresql+asyncpg://postgres:password@localhost:5432/books_db
+POSTGRES_DB=books_db
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
 
-ALEMBIC_DATABASE_URL=postgresql://postgres:password@localhost:5432/books_db
+DATABASE_URL=postgresql+asyncpg://postgres:password@db:5432/books_db
+
+ALEMBIC_DATABASE_URL=postgresql://postgres:password@db:5432/books_db
 
 SECRET_KEY=your-secret-key
 ALGORITHM=HS256
