@@ -51,6 +51,7 @@ class ExportImportService:
 
         imported = 0
         failed = 0
+        skipped = 0
         errors = []
 
         book_service = BookService(
@@ -68,6 +69,16 @@ class ExportImportService:
                     year=int(row["year"]),
                 )
 
+                exists = await self.book_repository.exists(
+                    title=payload.title,
+                    author_name=payload.author,
+                    year=payload.year,
+                )
+
+                if exists:
+                    skipped += 1
+                    continue
+
                 await book_service.create_book(payload)
 
                 imported += 1
@@ -83,5 +94,6 @@ class ExportImportService:
         return {
             "imported": imported,
             "failed": failed,
+            "skipped": skipped,
             "errors": errors,
         }

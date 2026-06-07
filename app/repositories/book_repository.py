@@ -85,3 +85,13 @@ class BookRepository:
         result = await self.db.execute(stmt)
         
         return result.scalars().all()
+    
+    async def exists(self, title: str, author_name: str, year: int) -> bool:
+        stmt = (select(Book).join(Author).where(
+                Book.title == title,
+                Author.name == author_name,
+                Book.year == year,
+            )
+        )
+        result = await self.db.execute(stmt)
+        return result.first() is not None
