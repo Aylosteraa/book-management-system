@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, Request
 from fastapi.security import OAuth2PasswordRequestForm
 
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -11,6 +11,8 @@ from app.schemas.auth_schema import TokenResponse, RefreshTokenRequest
 from app.schemas.user_schema import UserLogin, UserRegister, UserResponse
 
 from app.services.auth_service import AuthService
+
+from app.core.rate_limit import limiter
 
 
 router = APIRouter(
@@ -26,7 +28,8 @@ def get_auth_service(db: AsyncSession) -> AuthService:
 
 
 @router.post("/register", response_model=UserResponse, status_code=status.HTTP_201_CREATED)
-async def register(payload: UserRegister, db: AsyncSession = Depends(get_db)):
+@limiter.limit("3/minute")
+async def register(request: Request, payload: UserRegister, db: AsyncSession = Depends(get_db)):
 
     service = get_auth_service(db)
 
@@ -40,7 +43,8 @@ async def register(payload: UserRegister, db: AsyncSession = Depends(get_db)):
     
 
 @router.post("/login", response_model=TokenResponse, status_code=status.HTTP_200_OK)
-async def login(payload: UserLogin, db: AsyncSession = Depends(get_db)):
+@limiter.limit("5/minute")
+async def login(request: Request, payload: UserLogin, db: AsyncSession = Depends(get_db)):
 
     service = get_auth_service(db)
     tokens = await service.login(payload.email, payload.password)
@@ -52,7 +56,8 @@ async def login(payload: UserLogin, db: AsyncSession = Depends(get_db)):
 
 
 @router.post("/refresh", response_model=TokenResponse, status_code=status.HTTP_200_OK)
-async def refresh_token(payload: RefreshTokenRequest, db: AsyncSession = Depends(get_db)):
+@limiter.limit("20/minutes")
+async def refresh_token(request: Request, payload: RefreshTokenRequest, db: AsyncSession = Depends(get_db)):
 
     service = get_auth_service(db)
     tokens = await service.refresh(payload.refresh_token)

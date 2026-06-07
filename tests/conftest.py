@@ -24,10 +24,13 @@ from app.db.database import Base, get_db
 from app.models.user_model import User
 from app.models.author_model import Author
 from app.models.book_model import Book
+from app.core.rate_limit import limiter
 
 load_dotenv()
 
 TEST_DATABASE_URL = os.getenv("TEST_DATABASE_URL")
+
+limiter.enabled = False
 
 
 @pytest_asyncio.fixture

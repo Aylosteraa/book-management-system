@@ -1,6 +1,6 @@
 from uuid import UUID
 
-from fastapi import APIRouter, Depends, HTTPException, status, UploadFile, File
+from fastapi import APIRouter, Depends, HTTPException, status, UploadFile, File, Request
 from fastapi.responses import StreamingResponse
 
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -18,6 +18,8 @@ from app.schemas.import_schema import ImportResult
 
 from app.services.book_service import BookService
 from app.services.export_import_service import ExportImportService
+
+from app.core.rate_limit import limiter
 
 router = APIRouter(
     prefix="/books",
@@ -76,7 +78,9 @@ async def export_books(db: AsyncSession = Depends(get_db), current_user: User = 
     )
 
 @router.post("/import", response_model=ImportResult)
+@limiter.limit("10/hour")
 async def import_books(
+    request: Request, 
     file: UploadFile = File(...),
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user),
