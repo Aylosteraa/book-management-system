@@ -1,6 +1,6 @@
 from uuid import UUID
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, UploadFile, File
 from fastapi.responses import StreamingResponse
 
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -14,6 +14,7 @@ from app.repositories.author_repository import AuthorRepository
 from app.repositories.book_repository import BookRepository
 
 from app.schemas.book_schema import BookCreate, BookResponse, BookUpdate, BookListResponse, BookFilters
+from app.schemas.import_schema import ImportResult
 
 from app.services.book_service import BookService
 from app.services.export_import_service import ExportImportService
@@ -74,6 +75,20 @@ async def export_books(db: AsyncSession = Depends(get_db), current_user: User = 
         },
     )
 
+@router.post("/import", response_model=ImportResult)
+async def import_books(
+    file: UploadFile = File(...),
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+
+    if not file.filename.endswith(".csv"):
+        raise HTTPException(status_code=400, detail="Only CSV files are supported")
+
+    content = (await file.read()).decode("utf-8")
+    service = get_export_import_service(db)
+
+    return await service.import_books(content)
 
 @router.get("/{book_id}", response_model=BookResponse)
 async def get_book( book_id: UUID, db: AsyncSession = Depends(get_db),):
