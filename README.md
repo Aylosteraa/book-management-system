@@ -97,7 +97,7 @@ Create Book
 ```text
 POST /books
 ```
-> [!IMPORTANT]
+> [!NOTE]
 > Authentication required.
 
 
@@ -121,7 +121,7 @@ Update Book
 ```text
 PATCH /books/{book_id}
 ```
-> [!IMPORTANT]
+> [!NOTE]
 > Authentication required.
 
 
@@ -129,7 +129,7 @@ Delete Book
 ```
 DELETE /books/{book_id}
 ```
-> [!IMPORTANT]
+> [!NOTE]
 > Authentication required.
 
 ### Import / Export
@@ -139,7 +139,7 @@ CSV Export
 GET /books/export
 ```
 Downloads all books as CSV.
-> [!IMPORTANT]
+> [!NOTE]
 > Authentication required.
 
 CSV Import
@@ -147,6 +147,8 @@ CSV Import
 POST /books/import
 ```
 Upload CSV file with the following structure:
+> [!NOTE]
+> Authentication required.
 
 CSV Import Example
 ```csv
