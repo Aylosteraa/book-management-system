@@ -3,3 +3,4 @@ venv/
 .env
 .vscode/
 alembic/versions/*.pyc
+.pytest_cache

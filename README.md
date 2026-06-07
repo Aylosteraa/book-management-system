@@ -47,7 +47,7 @@ DATABASE_URL=postgresql+asyncpg://postgres:password@db:5432/books_db
 
 ALEMBIC_DATABASE_URL=postgresql://postgres:password@db:5432/books_db
 
-TEST_DATABASE_URL = postgresql+asyncpg://postgres:password@test_db:5432/books_test
+TEST_DATABASE_URL=postgresql+asyncpg://postgres:password@test_db:5432/books_test
 
 SECRET_KEY=your-secret-key
 ALGORITHM=HS256
