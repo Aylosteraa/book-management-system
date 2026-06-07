@@ -166,7 +166,7 @@ Negative Year Book,Test Author,fantasy,-100
 Empty Genre Book,Test Author,,2020
 ```
 > [!NOTE]
->For testing import you can use files in data_csv
+>For testing `/book/import` you can use files in data_csv
 
 > [!NOTE]
 >Import Rules:
