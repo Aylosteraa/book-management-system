@@ -79,6 +79,7 @@ Register
 ```text
 POST /user/register
 ```
+
 Login
 ```text
 POST /user/authorize
@@ -98,6 +99,18 @@ Returns:
 > [!IMPORTANT]
 > Use the access token in the Swagger **Authorize** button.
 
+
+Authentication Flow
+
+- User registers or logs in.
+- API returns an access token and a refresh token.
+- The access token is included in the Authorization header for protected requests:
+- Authorization: Bearer <access_token>
+- When the access token expires, the client sends the refresh token to:
+```text
+POST /user/refresh
+```
+- If the refresh token is valid, the API issues a new pair of access and refresh tokens.
 
 ### Books
 
