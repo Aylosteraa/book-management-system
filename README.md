@@ -213,4 +213,4 @@ The following limits are applied:
 | POST | /books/import | 10 requests per hour |
 
 These limits help prevent brute-force attacks, spam registrations, and excessive database load caused by frequent import.
-When a limit is exceeded, the API returns 429 Too Many Requests with an appropriate error message indicating that the request rate has been exceeded.
+When a limit is exceeded, the API returns: 429 Too Many Requests with an appropriate error message indicating that the request rate has been exceeded.
