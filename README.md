@@ -208,7 +208,7 @@ The following limits are applied:
 | Method | Endpoint | Limit |
 |--------|----------|-------|
 | POST | /user/register | 3 requests per minute |
-| POST | /user/login| | 5 requests per minute |
+| POST | /user/login | 5 requests per minute |
 | POST | /user/refresh | 20 requests per minute |
 | POST | /books/import | 10 requests per hour |
 
