@@ -198,3 +198,19 @@ Run a single test
 ```bash
 docker compose run --rm tests pytest tests/integration/test_auth.py::test_register_user -v
 ```
+
+## Rate Limiting
+
+To protect the API from abuse and excessive resource consumption, rate limiting is implemented using SlowAPI.
+
+The following limits are applied:
+
+| Method | Endpoint | Limit |
+|--------|----------|-------|
+| POST | /user/register | 3 requests per minute |
+| POST | /user/login| | 5 requests per minute |
+| POST | /user/refresh | 20 requests per minute |
+| POST | /books/import | 10 requests per hour |
+
+These limits help prevent brute-force attacks, spam registrations, and excessive database load caused by frequent import.
+When a limit is exceeded, the API returns 429 Too Many Requests with an appropriate error message indicating that the request rate has been exceeded.
