@@ -81,6 +81,9 @@ Login
 ```text
 POST /user/authorize
 ```
+```text
+POST /user/login
+```
 
 Returns:
 ```text
