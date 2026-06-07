@@ -18,6 +18,24 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  test_db:
+    image: postgres:17
+    container_name: books_test_db
+
+    env_file:
+      - .env
+
+    environment:
+      POSTGRES_DB: books_test
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+    ports:
+      - "5433:5432"
+
+    volumes:
+      - postgres_test_data:/var/lib/postgresql/data
+
   api:
     build: .
 
@@ -32,5 +50,21 @@ services:
     ports:
       - "8000:8000"
 
+    command: ./entrypoint.sh
+
+  tests:
+    build: .
+
+    container_name: books_tests
+
+    env_file:
+      - .env
+
+    depends_on:
+      - test_db
+
+    command: pytest --cov=app --cov-report=term-missing
+
 volumes:
   postgres_data:
+  postgres_test_data:

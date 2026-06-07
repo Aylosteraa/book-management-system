@@ -25,7 +25,7 @@ def get_auth_service(db: AsyncSession) -> AuthService:
     )
 
 
-@router.post("/register", response_model=UserResponse)
+@router.post("/register", response_model=UserResponse, status_code=status.HTTP_201_CREATED)
 async def register(payload: UserRegister, db: AsyncSession = Depends(get_db)):
 
     service = get_auth_service(db)
@@ -39,7 +39,7 @@ async def register(payload: UserRegister, db: AsyncSession = Depends(get_db)):
         raise HTTPException(status_code=400,detail=str(e))
     
 
-@router.post("/login", response_model=TokenResponse)
+@router.post("/login", response_model=TokenResponse, status_code=status.HTTP_200_OK)
 async def login(payload: UserLogin, db: AsyncSession = Depends(get_db)):
 
     service = get_auth_service(db)
@@ -51,7 +51,7 @@ async def login(payload: UserLogin, db: AsyncSession = Depends(get_db)):
     return tokens
 
 
-@router.post("/refresh", response_model=TokenResponse)
+@router.post("/refresh", response_model=TokenResponse, status_code=status.HTTP_200_OK)
 async def refresh_token(payload: RefreshTokenRequest, db: AsyncSession = Depends(get_db)):
 
     service = get_auth_service(db)
@@ -63,7 +63,7 @@ async def refresh_token(payload: RefreshTokenRequest, db: AsyncSession = Depends
     return tokens
 
 
-@router.post("/authorize", response_model=TokenResponse)
+@router.post("/authorize", response_model=TokenResponse, status_code=status.HTTP_200_OK)
 async def authorize_login(form_data: OAuth2PasswordRequestForm = Depends(), db: AsyncSession = Depends(get_db)):
 
     service = get_auth_service(db)

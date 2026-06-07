@@ -24,6 +24,7 @@ The application supports:
 - Pydantic
 - JWT
 - Docker
+- Pytest
 
 
 ## Setup
@@ -45,6 +46,8 @@ POSTGRES_PASSWORD=password
 DATABASE_URL=postgresql+asyncpg://postgres:password@db:5432/books_db
 
 ALEMBIC_DATABASE_URL=postgresql://postgres:password@db:5432/books_db
+
+TEST_DATABASE_URL = postgresql+asyncpg://postgres:password@test_db:5432/books_test
 
 SECRET_KEY=your-secret-key
 ALGORITHM=HS256
@@ -156,21 +159,42 @@ title,author,genre,year
 1984,George Orwell,fiction,1949
 Dune,Frank Herbert,sci_fi,1965
 Harry Potter and the Philosopher's Stone,J.K. Rowling,fantasy,1997
-The Shining,Stephen King,horror,1977
-Sapiens,Yuval Noah Harari,History,2011
-Pride and Prejudice,Jane Austen,romance,1813
-Foundation,Isaac Asimov,sci_fi,1951
-The Hobbit,J.R.R. Tolkien,fantasy,1937
-Steve Jobs,Walter Isaacson,biography,2011
-The Martian,Andy Weir,sci_fi,2014
-Broken Year Book,Test Author,fiction,3000
-Unknown Genre Book,Test Author,mystery,2020
-Missing Title,,fiction,2020
 Negative Year Book,Test Author,fantasy,-100
 Empty Genre Book,Test Author,,2020
 ```
+> [!NOTE]
+>For testing import you can use files in data_csv
 
-Import Rules:
-- Invalid rows are skipped and reported
-- Duplicate books are skipped
-- Import continues even if some rows contain errors
+> [!NOTE]
+>Import Rules:
+>- Invalid rows are skipped and reported
+>- Duplicate books are skipped
+>- Import continues even if some rows contain errors
+
+## Tests
+
+### Integration Tests
+- test_auth.py — registration, login, and token refresh endpoints.
+- test_books.py — CRUD operations, filtering, import/export, and book-related endpoints.
+
+### Unit Tests
+- test_book_validators.py — validation rules for book data.
+- test_schemas.py — Pydantic schema validation and serialization.
+- test_security.py — password hashing, password verification, JWT creation and decoding.
+- test_validators.py — reusable validation helper functions.
+
+### Run tests 
+Run all tests
+```bash
+docker compose run --rm tests
+```
+
+Run a specific test file
+```bash
+docker compose run --rm tests pytest tests/integration/test_auth.py -v
+```
+
+Run a single test
+```bash
+docker compose run --rm tests pytest tests/integration/test_auth.py::test_register_user -v
+```

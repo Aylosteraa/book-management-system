@@ -1,0 +1,201 @@
+title,author,genre,year
+Unique Book 1,Author 1,history,1908
+Unique Book 2,Author 2,sci_fi,1988
+Unique Book 3,Author 3,history,1951
+Unique Book 4,Author 4,fantasy,1936
+Unique Book 5,Author 5,biography,1986
+Unique Book 6,Author 6,fiction,2025
+Unique Book 7,Author 7,romance,1852
+Unique Book 8,Author 8,horror,1979
+Unique Book 9,Author 9,fiction,1920
+Unique Book 10,Author 10,fantasy,1892
+Unique Book 11,Author 11,romance,2020
+Unique Book 12,Author 12,romance,1889
+Unique Book 13,Author 13,fantasy,1925
+Unique Book 14,Author 14,history,2022
+Unique Book 15,Author 15,romance,1885
+Unique Book 16,Author 16,romance,1944
+Unique Book 17,Author 17,fiction,1967
+Unique Book 18,Author 18,fantasy,1946
+Unique Book 19,Author 19,history,1833
+Unique Book 20,Author 20,history,1821
+Unique Book 21,Author 21,fiction,2026
+Unique Book 22,Author 22,horror,1817
+Unique Book 23,Author 23,fantasy,2015
+Unique Book 24,Author 24,sci_fi,1828
+Unique Book 25,Author 25,fiction,1915
+Unique Book 26,Author 26,fiction,1946
+Unique Book 27,Author 27,romance,2000
+Unique Book 28,Author 28,sci_fi,1915
+Unique Book 29,Author 29,history,1893
+Unique Book 30,Author 30,sci_fi,2000
+Unique Book 31,Author 31,fantasy,2019
+Unique Book 32,Author 32,fantasy,1930
+Unique Book 33,Author 33,history,1869
+Unique Book 34,Author 34,biography,1832
+Unique Book 35,Author 35,history,1960
+Unique Book 36,Author 36,horror,2007
+Unique Book 37,Author 37,history,1977
+Unique Book 38,Author 38,biography,1936
+Unique Book 39,Author 39,romance,2002
+Unique Book 40,Author 40,fiction,1819
+Unique Book 41,Author 41,history,1921
+Unique Book 42,Author 42,biography,1898
+Unique Book 43,Author 43,fantasy,1911
+Unique Book 44,Author 44,fiction,1858
+Unique Book 45,Author 45,history,1927
+Unique Book 46,Author 46,sci_fi,1840
+Unique Book 47,Author 47,sci_fi,2013
+Unique Book 48,Author 48,sci_fi,1918
+Unique Book 49,Author 49,fiction,1995
+Unique Book 50,Author 50,sci_fi,1941
+Unique Book 51,Author 51,romance,2002
+Unique Book 52,Author 52,romance,1912
+Unique Book 53,Author 53,horror,2016
+Unique Book 54,Author 54,fantasy,1812
+Unique Book 55,Author 55,fiction,1858
+Unique Book 56,Author 56,fiction,1825
+Unique Book 57,Author 57,fiction,1819
+Unique Book 58,Author 58,biography,1801
+Unique Book 59,Author 59,biography,1900
+Unique Book 60,Author 60,fiction,1931
+Unique Book 61,Author 61,fantasy,1953
+Unique Book 62,Author 62,horror,1881
+Unique Book 63,Author 63,biography,1900
+Unique Book 64,Author 64,romance,1903
+Unique Book 65,Author 65,horror,1851
+Unique Book 66,Author 66,history,1972
+Unique Book 67,Author 67,romance,1939
+Unique Book 68,Author 68,history,1828
+Unique Book 69,Author 69,biography,1945
+Unique Book 70,Author 70,horror,1924
+Unique Book 71,Author 71,horror,1870
+Unique Book 72,Author 72,horror,1990
+Unique Book 73,Author 73,romance,1918
+Unique Book 74,Author 74,biography,1808
+Unique Book 75,Author 75,romance,1857
+Unique Book 76,Author 76,sci_fi,1983
+Unique Book 77,Author 77,history,1896
+Unique Book 78,Author 78,fantasy,1833
+Unique Book 79,Author 79,horror,1972
+Unique Book 80,Author 80,romance,1858
+Unique Book 81,Author 81,horror,1816
+Unique Book 82,Author 82,fiction,1987
+Unique Book 83,Author 83,horror,1965
+Unique Book 84,Author 84,biography,1802
+Unique Book 85,Author 85,romance,1976
+Unique Book 86,Author 86,romance,1899
+Unique Book 87,Author 87,horror,1976
+Unique Book 88,Author 88,romance,2006
+Unique Book 89,Author 89,sci_fi,1807
+Unique Book 90,Author 90,biography,1847
+Unique Book 91,Author 91,history,1962
+Unique Book 92,Author 92,history,1960
+Unique Book 93,Author 93,romance,1902
+Unique Book 94,Author 94,biography,1924
+Unique Book 95,Author 95,sci_fi,1916
+Unique Book 96,Author 96,romance,1829
+Unique Book 97,Author 97,fiction,1995
+Unique Book 98,Author 98,fiction,1977
+Unique Book 99,Author 99,fiction,1934
+Unique Book 100,Author 100,sci_fi,1903
+Unique Book 101,Author 101,biography,1976
+Unique Book 102,Author 102,fiction,1809
+Unique Book 103,Author 103,fantasy,1860
+Unique Book 104,Author 104,fiction,1817
+Unique Book 105,Author 105,horror,1913
+Unique Book 106,Author 106,horror,1855
+Unique Book 107,Author 107,romance,1925
+Unique Book 108,Author 108,fantasy,1912
+Unique Book 109,Author 109,romance,1804
+Unique Book 110,Author 110,biography,1953
+Unique Book 111,Author 111,horror,1967
+Unique Book 112,Author 112,horror,1963
+Unique Book 113,Author 113,history,1985
+Unique Book 114,Author 114,fantasy,2001
+Unique Book 115,Author 115,romance,1907
+Unique Book 116,Author 116,history,1956
+Unique Book 117,Author 117,fiction,1890
+Unique Book 118,Author 118,horror,1865
+Unique Book 119,Author 119,biography,1842
+Unique Book 120,Author 120,history,1958
+Duplicate Book 1,Duplicate Author 1,fiction,1807
+Duplicate Book 1,Duplicate Author 1,fiction,1807
+Duplicate Book 2,Duplicate Author 2,fiction,1845
+Duplicate Book 2,Duplicate Author 2,fiction,1845
+Duplicate Book 3,Duplicate Author 3,sci_fi,2015
+Duplicate Book 3,Duplicate Author 3,sci_fi,2015
+Duplicate Book 4,Duplicate Author 4,romance,1851
+Duplicate Book 4,Duplicate Author 4,romance,1851
+Duplicate Book 5,Duplicate Author 5,history,1852
+Duplicate Book 5,Duplicate Author 5,history,1852
+Duplicate Book 6,Duplicate Author 6,fantasy,1905
+Duplicate Book 6,Duplicate Author 6,fantasy,1905
+Duplicate Book 7,Duplicate Author 7,biography,1862
+Duplicate Book 7,Duplicate Author 7,biography,1862
+Duplicate Book 8,Duplicate Author 8,biography,1885
+Duplicate Book 8,Duplicate Author 8,biography,1885
+Duplicate Book 9,Duplicate Author 9,history,1804
+Duplicate Book 9,Duplicate Author 9,history,1804
+Duplicate Book 10,Duplicate Author 10,history,1923
+Duplicate Book 10,Duplicate Author 10,history,1923
+Duplicate Book 11,Duplicate Author 11,biography,2004
+Duplicate Book 11,Duplicate Author 11,biography,2004
+Duplicate Book 12,Duplicate Author 12,sci_fi,1959
+Duplicate Book 12,Duplicate Author 12,sci_fi,1959
+Duplicate Book 13,Duplicate Author 13,fantasy,1940
+Duplicate Book 13,Duplicate Author 13,fantasy,1940
+Duplicate Book 14,Duplicate Author 14,history,1955
+Duplicate Book 14,Duplicate Author 14,history,1955
+Duplicate Book 15,Duplicate Author 15,fantasy,1990
+Duplicate Book 15,Duplicate Author 15,fantasy,1990
+Wrong Genre C,Author O,adventure,2019
+Ancient Book A,Author Z,history,1500
+,,history,2020
+Future Book B,Author Y,fantasy,3000
+Wrong Genre C,Author O,adventure,2019
+Empty Author Book,,fantasy,2020
+Ancient Book B,Author K,romance,1200
+Future Book B,Author Y,fantasy,3000
+Ancient Book A,Author Z,history,1500
+Ancient Book B,Author K,romance,1200
+Future Book B,Author Y,fantasy,3000
+Empty Author Book,,fantasy,2020
+Future Book A,Author X,fiction,2030
+Wrong Genre B,Author N,thriller,2021
+Wrong Genre C,Author O,adventure,2019
+,,history,2020
+Empty Author Book,,fantasy,2020
+Ancient Book A,Author Z,history,1500
+Ancient Book B,Author K,romance,1200
+Ancient Book A,Author Z,history,1500
+Future Book B,Author Y,fantasy,3000
+Ancient Book B,Author K,romance,1200
+Future Book B,Author Y,fantasy,3000
+Wrong Genre C,Author O,adventure,2019
+Ancient Book A,Author Z,history,1500
+Wrong Genre A,Author M,mystery,2020
+Wrong Genre A,Author M,mystery,2020
+Ancient Book A,Author Z,history,1500
+Future Book B,Author Y,fantasy,3000
+,Author EmptyTitle,fiction,2020
+,,history,2020
+Wrong Genre A,Author M,mystery,2020
+,,history,2020
+Wrong Genre C,Author O,adventure,2019
+Ancient Book B,Author K,romance,1200
+Ancient Book A,Author Z,history,1500
+Wrong Genre A,Author M,mystery,2020
+,Author EmptyTitle,fiction,2020
+Ancient Book A,Author Z,history,1500
+Future Book B,Author Y,fantasy,3000
+Wrong Genre C,Author O,adventure,2019
+,Author EmptyTitle,fiction,2020
+Wrong Genre A,Author M,mystery,2020
+Wrong Genre C,Author O,adventure,2019
+Future Book B,Author Y,fantasy,3000
+Wrong Genre B,Author N,thriller,2021
+Wrong Genre A,Author M,mystery,2020
+Empty Author Book,,fantasy,2020
+Ancient Book A,Author Z,history,1500
+Future Book B,Author Y,fantasy,3000

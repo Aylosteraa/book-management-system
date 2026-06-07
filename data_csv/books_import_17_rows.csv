@@ -1,0 +1,18 @@
+title,author,genre,year
+1984,George Orwell,fiction,1949
+Dune,Frank Herbert,sci_fi,1965
+Harry Potter and the Philosopher's Stone,J.K. Rowling,fantasy,1997
+The Shining,Stephen King,horror,1977
+Sapiens,Yuval Noah Harari,history,2011
+Pride and Prejudice,Jane Austen,romance,1813
+Harry Potter and the Philosopher's Stone,J.K. Rowling,fantasy,1997
+Foundation,Isaac Asimov,sci_fi,1951
+The Hobbit,J.R.R. Tolkien,fantasy,1937
+The Hobbit,J.R.R. Tolkien,fantasy,1937
+Steve Jobs,Walter Isaacson,biography,2011
+The Martian,Andy Weir,sci_fi,2014
+Broken Year Book,Test Author,fiction,3000
+Unknown Genre Book,Test Author,mystery,2020
+Missing Title,,fiction,2020
+Negative Year Book,Test Author,fantasy,-100
+Empty Genre Book,Test Author,,2020
