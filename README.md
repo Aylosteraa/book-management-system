@@ -69,6 +69,8 @@ API documentation (Swager):
 http://localhost:8000/docs
 ```
 
+![Swagger](images/swagger.png)
+
 ## API Endpoints
 
 ### Authentication
